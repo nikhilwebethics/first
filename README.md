@@ -10,13 +10,12 @@ When it comes to RFPs, the goal has always been simply stated, but less simply a
 
 ## Installation
 1. Install the dependencies and devDependencies and start the server.
-  ```sh
-    git clone: https://nylemalik@github.com/nylemalik/prosal.git
-    git branch
-    git checkout develop
-    git pull origin develop
+    1. `git clone: https://nylemalik@github.com/nylemalik/prosal.git` 
+    2. `git branch`
+    3. `git checkout develop`
+    4. `git pull origin develop`
 
-  ```
+ 
 2. Install docker and docker compose
 3. From the root of the project
    ` Run : docker-compose up -d --build`
@@ -72,41 +71,37 @@ When it comes to RFPs, the goal has always been simply stated, but less simply a
 ```sh
    mongorestore --uri mongoatlas_uri/prosal  path_from_where_you_import_db
 ```
-   If all is fine then your site is working fine. Then you can open your site on localhost : http://localhost:8100
+   If all is fine then your site is working fine. Then you can open your site on localhost :  [http://localhost:8100](http://localhost:8100)
 
 ## Steps to deploy changes to production.:
 
 Let suppose you have made change in the file and you have checked all is fine and you are working in the deveop branch directly.
 Then you need follow the steps to deploy you changes :
-
-```sh
-   1. git add 'you need put file name'
-   2. git commit -m 'Enter commit message'
-   3. git push origin develop
-```
+   1. `git add 'you need put file name'`
+   2. `git commit -m 'Enter commit message'`
+   3. `git push origin develop`
 
 After that you need to connect the live server ssh
 
 Connect to ssh and then run below command
 
 #### Purge cache from Cloudfare
-```sh
-# sudo su
-# cd /var/html/prosal
-# git pull origin develop  (if issue in the pull then run these 2 command)
-  i)git stash
-  ii)git pull origin develop
-# docker exec -it app /bin/bash
-# rm -rf node_modules
-# rm -rf package-lock.json
-# cd public/js
-# rm -rf index.js
-# cd ..
-```
+
+1. `sudo su`
+2. `cd /var/html/prosal`
+3. `git pull origin develop  (if issue in the pull then run these 2 command)`
+  `i)git stash`
+  `ii)git pull origin develop`
+4. `docker exec -it app /bin/bash`
+5. `rm -rf node_modules`
+6. `rm -rf package-lock.json`
+7. `cd public/js`
+8. `rm -rf index.js`
+9. `cd ..`
+
 #### When You are on root directory of project inside the container then run below command.
-```
-# npm install
-# php artisan optimize
-# npm run dev
-```
+1. `npm install`
+2. `php artisan optimize`
+3. `npm run dev`
+
 These are the steps to deploy changes to production.
