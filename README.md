@@ -1,16 +1,6 @@
-# ![drawing](https://prosal.io/img/logo_gray.png)
-
-# PROSAL
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
-A Prosal is a modern solution to the request for proposals (RFPs) Simply put, a Prosal is our take on the RFP - a standardized, predictable document optimized for readability, and responses. We have summarized the complexity of the RFP into a card, so that you know exactly what you’re looking at the very first time you see it.
-
-When it comes to RFPs, the goal has always been simply stated, but less simply achieved: define a need or challenge, publish a request for consultants and freelancers to compete, and select the right vendor for the job. The RFP process is outdated and ineffective. It is often a closed undertaking that produces limited outreach and an even more limited number of respondents, disproportionately affecting firms led by women and people of color. It leads to time delays, increased and unexpected costs, and unsatisfactory project deliverables. Both issuers and respondents stand to benefit from a new solution.
-
-## Setup project on local system from scratch 
+## Setup a development environment for our site from scratch
 1. Install the dependencies and devDependencies and start the server.
-    1. `git clone: https://nylemalik@github.com/nylemalik/prosal.git` 
+    1. `git clone https://nylemalik@github.com/nylemalik/prosal.git` 
     2. `git branch`
     3. `git checkout develop`
     4. `git pull origin develop`
@@ -56,7 +46,7 @@ When it comes to RFPs, the goal has always been simply stated, but less simply a
    6. `npm run watch`
 
 
-## BACKUP FROM ATLAS LIVE DB
+## Backup From Atlas Live Db
 
 1. docker exec -it mongodb /bin/bash (this command take you inside the continer then you run the below command)
    ```sh
@@ -95,10 +85,10 @@ Connect to ssh and then run below command
 7. `cd public/js`
 8. `rm -rf index.js`
 9. `cd ..`
-
-#### When You are on root directory of project inside the container then run below command.
-1. `npm install`
-2. `php artisan optimize`
-3. `npm run watch`
+10. `npm install`
+11. `php artisan optimize`
+12. `npm run watch`
+##### after installing any package if site is not working, then run following command :<bR>
+   1. `composer update`
 
 These are the steps to deploy changes to production.
