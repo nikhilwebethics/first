@@ -1,45 +1,112 @@
-# electron-quick-start
+# ![drawing](https://prosal.io/img/logo_gray.png)
 
-**Clone and run for a quick way to see Electron in action.**
+# PROSAL
 
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/latest/tutorial/quick-start) within the Electron documentation.
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-**Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
+A Prosal is a modern solution to the request for proposals (RFPs) Simply put, a Prosal is our take on the RFP - a standardized, predictable document optimized for readability, and responses. We have summarized the complexity of the RFP into a card, so that you know exactly what you’re looking at the very first time you see it.
 
-A basic Electron application needs just these files:
+When it comes to RFPs, the goal has always been simply stated, but less simply achieved: define a need or challenge, publish a request for consultants and freelancers to compete, and select the right vendor for the job. The RFP process is outdated and ineffective. It is often a closed undertaking that produces limited outreach and an even more limited number of respondents, disproportionately affecting firms led by women and people of color. It leads to time delays, increased and unexpected costs, and unsatisfactory project deliverables. Both issuers and respondents stand to benefit from a new solution.
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
+## Installation
+1. Install the dependencies and devDependencies and start the server.
+  ```sh
+    git clone: https://nylemalik@github.com/nylemalik/prosal.git
+    git branch
+    git checkout develop
+    git pull origin develop
 
-You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/latest/tutorial/quick-start).
+  ```
+2. Install docker and docker compose
+3. From the root of the project
+   ` Run : docker-compose up -d --build`
+4. Add this file under this path : nginx\conf\app.conf  
+   Add this data in this file :
+   ```sh
+   server {
+   listen 80;
+   index index.php index.html;
+   error_log /var/log/nginx/error.log;
+   access_log /var/log/nginx/access.log;
+   client_max_body_size 100M;
+   root /var/www/public;
+   location ~ \.php$ {
+   try_files $uri =404;
+   fastcgi_split_path_info ^(.+\.php)(/.+)$;
+   fastcgi_pass app:9000;
+   fastcgi_index index.php;
+   include fastcgi_params;
+   fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+   fastcgi_param PATH_INFO $fastcgi_path_info;
+   }
+   location / {
+   try_files $uri $uri/ /index.php?$query_string;
+   gzip_static on;
+   }
+   }
+   ```
+5. `sudo docker exec nginx nginx -s reload`
+6. Check docker container
+   `docker-compose ps `
+7. Run command inside the docker container
 
-## To Use
+  ```sh
+   docker exec -it app /bin/bash    (app is container, You need to run this commend then run all command that is below)
+   composer install --ignore-platform-reqs
+   composer update
+   npm install
+   php artisan optimize
+   npm run dev
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+  ```
 
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
-npm install
-# Run the app
-npm start
+## BACKUP FROM ATLAS LIVE DB
+
+1. docker exec -it mongodb /bin/bash (this command take you inside the continer then you run the below command)
+   ```sh
+   mongodump --uri="mongodb+srv://URL" --out "path_to_store_mongodb"   (this is live site url,so csrfully run the commands)
+   docker cp mongodb:path_to_store_mongodb/prosal  path_to_store_db_from_docker
+   ```
+2. Import MONGODB databse to atlas DB
+
+```sh
+   mongorestore --uri mongoatlas_uri/prosal  path_from_where_you_import_db
+```
+   If all is fine then your site is working fine. Then you can open your site on localhost : http://localhost:8100
+
+## Steps to deploy changes to production.:
+
+Let suppose you have made change in the file and you have checked all is fine and you are working in the deveop branch directly.
+Then you need follow the steps to deploy you changes :
+
+```sh
+   1. git add 'you need put file name'
+   2. git commit -m 'Enter commit message'
+   3. git push origin develop
 ```
 
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+After that you need to connect the live server ssh
 
-## Resources for Learning Electron
+Connect to ssh and then run below command
 
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
-
-## License
-
-[CC0 1.0 (Public Domain)](LICENSE.md)
+#### Purge cache from Cloudfare
+```sh
+# sudo su
+# cd /var/html/prosal
+# git pull origin develop  (if issue in the pull then run these 2 command)
+  i)git stash
+  ii)git pull origin develop
+# docker exec -it app /bin/bash
+# rm -rf node_modules
+# rm -rf package-lock.json
+# cd public/js
+# rm -rf index.js
+# cd ..
+```
+#### When You are on root directory of project inside the container then run below command.
+```
+# npm install
+# php artisan optimize
+# npm run dev
+```
+These are the steps to deploy changes to production.
