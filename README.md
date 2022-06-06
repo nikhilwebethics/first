@@ -51,7 +51,7 @@ When it comes to RFPs, the goal has always been simply stated, but less simply a
 7. Run command inside the docker container
 
   ```sh
-   docker exec -it app /bin/bash    (app is container, You need to run this commend then run all command that is below)
+   docker exec -it app /bin/bash    (app is container, You need to run this command then run all command that is below)
    composer install --ignore-platform-reqs
    composer update
    npm install
