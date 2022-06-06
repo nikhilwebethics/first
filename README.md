@@ -89,9 +89,9 @@ Connect to ssh and then run below command
 
 1. `sudo su`
 2. `cd /var/html/prosal`
-3. `git pull origin develop  (if issue in the pull then run these 2 command)`
-  `i)git stash`
-  `ii)git pull origin develop`
+3. `git pull origin develop  (if issue in the pull then run these 2 command)`<br>
+  i)`git stash`<br>
+  ii)`git pull origin develop`
 4. `docker exec -it app /bin/bash`
 5. `rm -rf node_modules`
 6. `rm -rf package-lock.json`
