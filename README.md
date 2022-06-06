@@ -48,16 +48,13 @@ When it comes to RFPs, the goal has always been simply stated, but less simply a
 6. Check docker container
    `docker-compose ps `
 7. Run command inside the docker container
+   1. `docker exec -it app /bin/bash    (app is container, You need to run this command then run all command that is below)`
+   2. `composer install --ignore-platform-reqs`
+   3. `composer update`
+   4. `npm install`
+   5. `php artisan optimize`
+   6. `npm run dev`
 
-  ```sh
-   docker exec -it app /bin/bash    (app is container, You need to run this command then run all command that is below)
-   composer install --ignore-platform-reqs
-   composer update
-   npm install
-   php artisan optimize
-   npm run dev
-
-  ```
 
 ## BACKUP FROM ATLAS LIVE DB
 
