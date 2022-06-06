@@ -8,7 +8,7 @@ A Prosal is a modern solution to the request for proposals (RFPs) Simply put, a 
 
 When it comes to RFPs, the goal has always been simply stated, but less simply achieved: define a need or challenge, publish a request for consultants and freelancers to compete, and select the right vendor for the job. The RFP process is outdated and ineffective. It is often a closed undertaking that produces limited outreach and an even more limited number of respondents, disproportionately affecting firms led by women and people of color. It leads to time delays, increased and unexpected costs, and unsatisfactory project deliverables. Both issuers and respondents stand to benefit from a new solution.
 
-## Installation
+## Setup project on local system from scratch 
 1. Install the dependencies and devDependencies and start the server.
     1. `git clone: https://nylemalik@github.com/nylemalik/prosal.git` 
     2. `git branch`
