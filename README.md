@@ -99,6 +99,6 @@ Connect to ssh and then run below command
 #### When You are on root directory of project inside the container then run below command.
 1. `npm install`
 2. `php artisan optimize`
-3. `npm run dev`
+3. `npm run watch`
 
 These are the steps to deploy changes to production.
