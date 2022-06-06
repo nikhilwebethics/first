@@ -53,7 +53,7 @@ When it comes to RFPs, the goal has always been simply stated, but less simply a
    3. `composer update`
    4. `npm install`
    5. `php artisan optimize`
-   6. `npm run dev`
+   6. `npm run watch`
 
 
 ## BACKUP FROM ATLAS LIVE DB
